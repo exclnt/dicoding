@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  background-color: #141610;
+}
+
+.contents {
+    padding: 8px;
+    max-width: 50%;
+    border: 2px solid black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+  }
+
+  .form-element {
+    margin: 8px;
+    text-align: left;
+  }
+  
+  #notifikasiSisaKarakter {
+    visibility: hidden;
+  }
+  
+  @media screen and (max-width : 767px) {
+    .contents{
+      max-width: 100%;
+    }
+  }

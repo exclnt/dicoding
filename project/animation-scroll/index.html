@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll animation</title>
+    <style>
+        .container{
+            padding-top: 200px;
+            width: 100vw;
+            /* height:; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .box{
+            width: 100vw;
+            height: 100vh;
+            background-color: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transform: translateX(200%);
+            transition: transform .4s ease, opacity 4s ease;
+            opacity: 0;
+        }
+        .box:nth-of-type(even){
+            background-color: red;
+            transform: translateX(-200%);
+        }
+        .box.show{
+            transform: translateX(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="box">
+            <h2>HELLO</h2>
+        </div>
+        <div class="box">
+            <h2>I AM WEB DEVELOPER</h2>
+        </div>
+        <div class="box">
+            <h2>STUDY IN SMAN 1 GARUM</h2>
+        </div>
+        <div class="box">
+            <h2>1 YEAR EXPERIENC</h2>
+        </div>
+        <div class="box">
+            <h2>GOOD BY</h2>
+        </div>
+       
+    </div>
+    
+    <script>
+        const boxs = document.querySelectorAll('.box');
+
+        window.addEventListener('scroll',checkbox);
+        checkbox;
+
+        function checkbox(){
+            //mengambil tinggi layar lalu membagi dengan 20 * 4
+            const triggerBottom = window.innerHeight / 20 * 5;
+            console.log(`ini trggerBottom ${triggerBottom}`)
+            boxs.forEach((box,idx)=>{
+                //mengambil jarak adri atas hinga bawah motor view
+                const boxTop = box.getBoundingClientRect().top;
+                console.log(`ini boxTop ${boxTop}`)
+                if(boxTop < triggerBottom){
+                    box.classList.add('show');
+                }
+                // else{
+                //     box.classList.remove('show');
+                // };
+            });
+        }
+    </script>
+</body>
+</html>
