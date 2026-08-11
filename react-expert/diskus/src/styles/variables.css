@@ -1,0 +1,31 @@
+:root {
+  /* Colors - Minimalist Modern Light */
+  --bg-main: #f9fafb; /* App background (light gray) */
+  --bg-card: #ffffff; /* Card background (solid white) */
+  --border-color: #e5e7eb; /* Subtle border */
+  
+  --color-primary: #000000; /* Primary color (Pure Black) */
+  --color-primary-hover: #333333;
+  --color-secondary: #000000; /* Accent color (Pure Black) */
+  --color-secondary-hover: #333333;
+  
+  --accent-gold: #f59e0b; /* For leaderboard rank 1 */
+  --accent-silver: #9ca3af; /* For leaderboard rank 2 */
+  --accent-bronze: #b45309; /* For leaderboard rank 3 */
+  
+  --text-primary: #111827;
+  --text-muted: #6b7280;
+  --text-error: #ef4444;
+
+  /* Typography */
+  --font-main: 'Inter', 'Helvetica Neue', sans-serif;
+  
+  /* Minimalist Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --glass-blur: none;
+  --border-radius-md: 8px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.25s ease;
+}
