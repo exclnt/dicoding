@@ -1,4 +1,4 @@
-import React from 'react';
+
 import RegisterInput from './RegisterInput';
 
 export default {

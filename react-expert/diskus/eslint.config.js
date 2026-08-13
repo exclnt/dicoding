@@ -1,5 +1,5 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
+import storybook from 'eslint-plugin-storybook';
 
 import js from '@eslint/js';
 import globals from 'globals';
@@ -10,7 +10,7 @@ import {FlatCompat} from '@eslint/eslintrc';
 
 const compat = new FlatCompat();
 
-export default defineConfig([globalIgnores(['dist']), {
+export default defineConfig([globalIgnores(['dist', 'storybook-static', 'cypress', 'vite.config.js']), {
   files: ['**/*.{js,jsx}'],
   extends: [
     js.configs.recommended,
@@ -31,4 +31,4 @@ export default defineConfig([globalIgnores(['dist']), {
     'require-jsdoc': 'off',
     'max-len': ['error', {code: 260}],
   },
-}, ...storybook.configs["flat/recommended"]]);
+}, ...storybook.configs['flat/recommended']]);

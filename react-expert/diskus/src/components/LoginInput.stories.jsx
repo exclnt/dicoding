@@ -1,4 +1,4 @@
-import React from 'react';
+
 import LoginInput from './LoginInput';
 
 export default {

@@ -1,12 +1,12 @@
-/// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
+// / <reference types="vitest/config" />
+import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vite.dev/config/
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-import { playwright } from '@vitest/browser-playwright';
+import {fileURLToPath} from 'node:url';
+import {storybookTest} from '@storybook/addon-vitest/vitest-plugin';
+import {playwright} from '@vitest/browser-playwright';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
@@ -17,12 +17,12 @@ export default defineConfig({
       '/api': {
         target: 'https://forum-api.dicoding.dev/v1',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ''),
         cookieDomainRewrite: {
-          'forum-api.dicoding.dev': 'localhost'
-        }
-      }
-    }
+          'forum-api.dicoding.dev': 'localhost',
+        },
+      },
+    },
   },
   test: {
     projects: [{
@@ -30,16 +30,16 @@ export default defineConfig({
       test: {
         environment: 'jsdom',
         globals: true,
-        setupFiles: './src/setupTests.js'
-      }
+        setupFiles: './src/setupTests.js',
+      },
     }, {
       extends: true,
       plugins: [
       // The plugin will run tests for the stories defined in your Storybook config
       // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
-      storybookTest({
-        configDir: path.join(dirname, '.storybook')
-      })],
+        storybookTest({
+          configDir: path.join(dirname, '.storybook'),
+        })],
       test: {
         name: 'storybook',
         browser: {
@@ -47,10 +47,10 @@ export default defineConfig({
           headless: true,
           provider: playwright({}),
           instances: [{
-            browser: 'chromium'
-          }]
-        }
-      }
-    }]
-  }
+            browser: 'chromium',
+          }],
+        },
+      },
+    }],
+  },
 });
