@@ -76,6 +76,9 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Install Cypress Binary
+        run: pnpm exec cypress install
+
       - name: Run E2E Tests
         uses: cypress-io/github-action@v6
         with:
