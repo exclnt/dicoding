@@ -19,7 +19,7 @@ describe('Login Scenario', () => {
 
   it('should successfully login and redirect to home on correct credentials', () => {
     // Intercept API call
-    cy.intercept('POST', 'https://forum-api.dicoding.dev/v1/login', {
+    cy.intercept('POST', '**/api/login', {
       statusCode: 200,
       body: {
         status: 'success',
@@ -31,7 +31,7 @@ describe('Login Scenario', () => {
     }).as('loginRequest');
 
     // Intercept profile fetch
-    cy.intercept('GET', 'https://forum-api.dicoding.dev/v1/users/me', {
+    cy.intercept('GET', '**/api/users/me', {
       statusCode: 200,
       body: {
         status: 'success',
