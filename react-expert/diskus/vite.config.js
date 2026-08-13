@@ -18,8 +18,9 @@ export default defineConfig({
         target: 'https://forum-api.dicoding.dev/v1',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
-        cookieDomainRewrite: {
-          'forum-api.dicoding.dev': 'localhost',
+        headers: {
+          'Origin': 'https://forum-api.dicoding.dev',
+          'Referer': 'https://forum-api.dicoding.dev/'
         },
       },
     },
