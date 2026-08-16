@@ -1,0 +1,145 @@
+API atau Application Program Interface merupakan antarmuka yang menjadi perantara antara sistem aplikasi yang berbeda. API tak hanya dalam bentuk Web Service, bisa saja berupa SDK (Software Development Kit) ataupun lainnya.
+etika membangun REST API kita harus memperhatikan empat poin berikut:
+
+ - Format request dan response.
+ - HTTP Verbs/Methods.
+ - HTTP Response code.
+ - URL Design.
+
+//RESTful API untuk aplikasi catatan    
+    aplikasi akan dapat melakukan(CRUD):
+    - menyimpan data(create)
+    - melihat(read)
+    - mengubah(update)
+    - meghapus(delete)
+
+kriteria aplikasi
+
+    - web server dapat menyimpan catatan(disimpan dalam memory server)
+        catatan object yang disimpan
+            {
+                id: string,
+                title: string,
+                createdAt: string,
+                updateAt: string,
+                tags: array of string,
+                body: string,
+            },
+
+        agar dapat menyimpan catatan melalui aplikasi client,web server harus menyediakan route path '/notes' dan method POST
+
+        dalam menyimpan atau menambah notes client akan mengirim permintaan ke path dan method tersebut dengan membawa data JSON berikut:
+            {
+                "title":"judul catatan",
+                "tags":["tag1","tag2"];
+                "body": "kontent catatan"
+            }
+        properti lainya diolah disisi server.id bersifat unik
+        
+        jikapermintaan berhasl lakukan respon server status 201(created) dan megembalikan data dalam bentuk JSON dengan format berikut:
+            {
+                "status": "success",
+                "message": "catatan berhasil ditambah",
+                "data": {
+                    "noteId": "2783tyGGkl"
+                }
+            }
+        noteId diambil dari id
+
+        bila permintaan gagal dilakukan,berikan status code 500 dan kembalikan data JSON dengan format berikut:
+        {
+            "status": "error",
+            "message": "catatan gagal ditambahkan"
+        }
+
+    - web server dapat menampilkan catatan
+        ketika client nelakukan permintaan path '/notes' dengan method GET maka server harus mengembalikan status code 200(ok) dan mengirim data berikut:
+            {
+                "status": "success",
+                "data": {
+                    {
+                        id: string,
+                        title: string,
+                        createdAt: string,
+                        updateAt: string,
+                        tags: array of string,
+                        body: string,
+                    },
+                    //all item
+                }
+            }
+        selain itu client juga dapat mendapat catatan secara speksifik mengunakan id melalui path '/notes/{id}' dengan method GET mengembalikan status code 200(ok)
+        dan mengembalikan JSON berikut
+            {
+                 "status": "success",
+                "data": {
+                    {
+                        id: string,
+                        title: string,
+                        createdAt: string,
+                        updateAt: string,
+                        tags: array of string,
+                        body: string,
+                    },
+            }
+        jika agal harus merespon dengan status code 404
+        serta mengirim JSON :
+            {
+                "status": "fail",
+                "message": "catatan tidak ditemukan"
+            }
+    - web server dapat mengubah catatan
+        ia akan membuat permintaan ke path '/notes/{id}' mengunakan method PUT dan membawa data JSON dengan body request catatan baru:
+            {
+                "title": "judul catatan revisi"
+                "tags": [
+                    "tag1",
+                    "tag2"
+                ],
+                "body": "kontent catatan"
+            }
+        jika catan berhasil diubah kembalikan code 200(ok) dan menbawa JSON}
+            {
+                "status": "success",
+                "message": "catatan berhasil di ubah"
+            }
+        jika gagal kembalikan code 404 dan JSON 
+            {
+                "status": "fail",
+                "message": "catatan gagal di ubah"
+            }
+    - web server dapat menghapus catatan
+        client akan membuat permintaan pada path '/notes/{id}' dengan method DELETE 
+        jika berhsil kembalikan code 200(ok) dan JSON
+             {
+                "status": "success",
+                "message": "catatan berhasil di hapus"
+            }
+        jika gagal meka code 404 dan JSON
+             {
+                "status": "fail",
+                "message": "catatan gagal di hapus"
+            }
+
+        
+
+//STRUKTUR PROYEK
+
+notes-app-back-end
+|
+-- node_module
+|
+-- src
+| |
+| -- handler.js
+| |
+| -- notes.js
+| |
+| -- routes.js
+| |
+| -- server.js
+-- .eslintrc.json
+|
+-- package-lock.json
+|
+-- pacjage.json

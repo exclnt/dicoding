@@ -1,0 +1,17 @@
+true globals’. [2]
+Berikut adalah daftarnya:
+
+ - global : Global namespace. Member apa pun di dalam object ini dapat diakses pada cakupan global.
+ - process : menyediakan interaksi dengan proses Node.js yang berjalan.
+ - console : menyediakan berbagai fungsionalitas STDIO.
+ - setTimeout, clearTimeout, setInterval, clearInterval.
+
+ pseudo-globals dapat diakses layaknya global objek.
+Berikut adalah daftarnya:
+
+module : digunakan untuk sistem modularisasi pada Node.js.
+__filename : keyword untuk mendapatkan lokasi berkas JavaScript yang dieksekusi. Keyword ini tidak tersedia pada Node.js REPL.
+
+__dirname : keyword untuk mendapatkan root directory dari berkas JavaScript yang dieksekusi.
+require : digunakan untuk mengimpor module JavaScript.
+

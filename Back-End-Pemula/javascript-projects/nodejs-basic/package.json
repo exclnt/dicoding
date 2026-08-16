@@ -1,0 +1,11 @@
+{
+  "name": "project-nodejs01",
+  "version": "1.0.0",
+  "description": "nodejs basic",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "eko ramadan",
+  "license": "ISC"
+}

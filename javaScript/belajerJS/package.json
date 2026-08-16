@@ -1,0 +1,14 @@
+{
+  "name": "blajerjs",
+  "version": "1.0.0",
+  "description": "belajar javascript dan node",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "text",
+    "start": "node index.js"
+  },
+  
+  "author": "Eko Ramadani",
+  "license": "ISC"
+}
