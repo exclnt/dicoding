@@ -1,0 +1,88 @@
+name: CI Diskus
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - 'react-expert/diskus/**'
+      - '.github/workflows/ci-diskus.yml'
+  pull_request:
+    branches:
+      - master
+      - main
+    paths:
+      - 'react-expert/diskus/**'
+      - '.github/workflows/ci-diskus.yml'
+
+jobs:
+  lint-and-test:
+    name: Lint & Unit Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./react-expert/diskus
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+          cache-dependency-path: 'react-expert/diskus/pnpm-lock.yaml'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Run Linter
+        run: pnpm run lint
+
+      - name: Run Unit & Component Tests
+        run: |
+          pnpm exec playwright install chromium
+          pnpm test -- --run
+
+  e2e-test:
+    name: End-to-End Test
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    defaults:
+      run:
+        working-directory: ./react-expert/diskus
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+          cache-dependency-path: 'react-expert/diskus/pnpm-lock.yaml'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Install Cypress Binary
+        run: pnpm exec cypress install
+
+      - name: Run E2E Tests
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: ./react-expert/diskus
+          start: pnpm run dev
+          wait-on: 'http://localhost:5173'
+          build: pnpm run build
